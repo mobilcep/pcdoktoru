@@ -1,0 +1,34 @@
+PC Doktoru — GitHub Releases (portable ZIP)
+==========================================
+
+## 1. Portable üret
+
+  paketle.bat
+  python tools\site\paket_zip.py
+
+Çıktı: tools\site\dosyalar\PC-Doktoru-v3.1-portable.zip (~400 MB)
+
+## 2. GitHub Release oluştur
+
+Repo: https://github.com/mobilcep/pcdoktoru
+
+GitHub CLI (gh kuruluysa):
+
+  gh release create v3.1.0 ^
+    "tools\site\dosyalar\PC-Doktoru-v3.1-portable.zip" ^
+    --title "PC Doktoru v3.1 Portable" ^
+    --notes "Süper Ajan, lisans, İyzico satın alma. Windows 10/11 64-bit."
+
+Veya GitHub web arayüzü:
+  Releases → Draft a new release → tag v3.1.0 → ZIP dosyasını sürükle
+
+## 3. İndirme linki
+
+site-config.js (zaten ayarlı):
+
+  https://github.com/mobilcep/pcdoktoru/releases/latest/download/PC-Doktoru-v3.1-portable.zip
+
+## 4. Lisans sunucusu URL
+
+Yeni EXE'de config güncel olmalı (Render URL).
+Bkz: tools/lisans_deploy/RENDER_KURULUM.txt ADIM 4

@@ -1,6 +1,9 @@
 {
   "rewrites": [
-    { "source": "/indir", "destination": "/indir.html" }
+    { "source": "/indir", "destination": "/indir.html" },
+    { "source": "/satin-al", "destination": "/satin-al.html" },
+    { "source": "/odeme-basarili", "destination": "/odeme-basarili.html" },
+    { "source": "/odeme-hata", "destination": "/odeme-hata.html" }
   ],
   "headers": [
     {
