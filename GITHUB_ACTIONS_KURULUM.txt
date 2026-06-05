@@ -8,7 +8,7 @@ Git push ile otomatik Vercel deploy (GitHub App izni gerekmez)
 
    VERCEL_TOKEN        = (1. adımdaki token)
    VERCEL_ORG_ID       = team_nojKlX08twDyX4qesE3qWjT9
-   VERCEL_PROJECT_ID   = prj_kgroJcBeIJ01wJEok0AggmoFuBR6
+   VERCEL_PROJECT_ID   = prj_QRw8fnBQr2FAqBbT6LaaDkVVRheS
 
 3) main branch'e push → Actions sekmesinde deploy çalışır
 
