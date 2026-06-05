@@ -3,64 +3,463 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PC Doktoru — Süper Ajan | Windows PC Teşhis & Bakım</title>
-  <meta name="description" content="PC Doktoru Süper Ajan — yapay zeka destekli Windows teşhis, bakım ve güvenlik konsolu. Portable indir." />
+  <title>PC Doktoru — Yapay Zeka Destekli Windows Bakım & Teşhis Konsolu</title>
+  <meta name="description" content="PC Doktoru Süper Ajan: yapay zeka destekli Windows teşhis, bakım, güvenlik ve performans konsolu. Tek tıkla tam bakım, otonom mod, yerel AI. Portable, Türkçe." />
+  <meta name="theme-color" content="#0a0e16" />
+  <meta property="og:title" content="PC Doktoru — Süper Ajan" />
+  <meta property="og:description" content="Yapay zeka destekli Windows bakım ve teşhis konsolu. Portable, Türkçe." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pcdoktoru.com.tr" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg:#090c12; --surface:#121820; --accent:#3b82f6; --text:#e8eef8; --muted:#7a8ba8; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: "Segoe UI", system-ui, sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    header { text-align: center; padding: 2.5rem 0 2rem; }
-    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 .5rem; }
-    .sub { color: var(--muted); font-size: 1.05rem; }
-    .badge { display:inline-block; background: rgba(59,130,246,.15); color: var(--accent); padding: .25rem .75rem; border-radius: 999px; font-size: .8rem; margin-top: 1rem; }
-    .cta { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin: 2rem 0; }
-    a.btn { display:inline-flex; align-items:center; gap:.5rem; padding: .85rem 1.5rem; border-radius: 12px; text-decoration:none; font-weight:600; }
-    a.primary { background: var(--accent); color:#fff; }
-    a.secondary { border:1px solid #2a3548; color:var(--text); }
-    section { background: var(--surface); border:1px solid #1e2836; border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; }
-    h2 { font-size: 1.1rem; margin: 0 0 .75rem; }
-    ul { margin:0; padding-left: 1.2rem; color: var(--muted); }
-    footer { text-align:center; color:var(--muted); font-size:.85rem; margin-top:2rem; }
-    footer a { color: var(--accent); }
+    :root {
+      --bg: #070a11;
+      --bg2: #0a0e16;
+      --surface: #111722;
+      --surface2: #161d2b;
+      --border: #1f2ا330;
+      --border: #1e2troup636;
+      --border: #1d2636;
+      --text: #eef3fb;
+      --muted: #93a1b8;
+      --faint: #5d6b82;
+      --accent: #3b82f6;
+      --accent2: #8b5cf6;
+      --ok: #22c55e;
+      --radius: 18px;
+      --maxw: 1140px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
+    .grad-text {
+      background: linear-gradient(120deg, #60a5fa 0%, #a78bfa 50%, #60a5fa 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ---------- NAV ---------- */
+    header.nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 10, 17, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { display: flex; align-items: center; gap: .65rem; font-weight: 800; font-size: 1.12rem; letter-spacing: -.02em; }
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: grid; place-items: center; box-shadow: 0 6px 20px rgba(59,130,246,.4);
+    }
+    .logo-mark svg { width: 20px; height: 20px; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { color: var(--muted); font-size: .92rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      padding: .7rem 1.35rem; border-radius: 11px; font-weight: 600; font-size: .92rem;
+      transition: transform .15s, box-shadow .2s, background .2s; cursor: pointer; border: none;
+    }
+    .btn svg { width: 17px; height: 17px; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; box-shadow: 0 8px 24px rgba(59,130,246,.35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(59,130,246,.5); }
+    .btn-ghost { background: rgba(255,255,255,.05); color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { background: rgba(255,255,255,.09); }
+    .btn-lg { padding: .95rem 1.8rem; font-size: 1rem; }
+    .nav-cta { display: flex; align-items: center; gap: .8rem; }
+    .menu-btn { display: none; background: none; border: none; color: var(--text); cursor: pointer; }
+
+    /* ---------- HERO ---------- */
+    .hero { position: relative; padding: 5.5rem 0 4rem; text-align: center; overflow: hidden; }
+    .hero-glow {
+      position: absolute; top: -25%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px; pointer-events: none;
+      background: radial-gradient(circle at 50% 40%, rgba(59,130,246,.22), rgba(139,92,246,.12) 35%, transparent 65%);
+      filter: blur(20px);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none; opacity: .35;
+      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .pill {
+      display: inline-flex; align-items: center; gap: .5rem; padding: .4rem .9rem;
+      border-radius: 999px; background: rgba(59,130,246,.12); border: 1px solid rgba(59,130,246,.25);
+      color: #93c5fd; font-size: .82rem; font-weight: 500; margin-bottom: 1.6rem;
+    }
+    .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 10px var(--ok); }
+    .hero h1 {
+      font-size: clamp(2.3rem, 6vw, 4rem); font-weight: 900; letter-spacing: -.03em;
+      line-height: 1.05; margin-bottom: 1.3rem;
+    }
+    .hero p.lead {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--muted);
+      max-width: 640px; margin: 0 auto 2.2rem; font-weight: 400;
+    }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero-note { margin-top: 1.4rem; color: var(--faint); font-size: .85rem; }
+
+    /* ---------- MOCKUP ---------- */
+    .mockup-wrap { position: relative; z-index: 2; margin: 3.5rem auto 0; max-width: 920px; }
+    .mockup {
+      border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.1);
+      background: var(--surface); box-shadow: 0 40px 100px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.03);
+    }
+    .mockup-bar { display: flex; align-items: center; gap: .5rem; padding: .8rem 1rem; background: #0d1320; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .mockup-bar .d { width: 11px; height: 11px; border-radius: 50%; }
+    .mockup-bar .d.r { background: #ff5f57; } .mockup-bar .d.y { background: #febc2e; } .mockup-bar .d.g { background: #28c840; }
+    .mockup-bar .url { margin-left: 1rem; font-size: .78rem; color: var(--faint); background: rgba(255,255,255,.04); padding: .25rem .8rem; border-radius: 6px; }
+    .mockup-body { display: grid; grid-template-columns: 200px 1fr; min-height: 380px; }
+    .mk-side { background: #0c121d; border-right: 1px solid rgba(255,255,255,.05); padding: 1.2rem .9rem; }
+    .mk-side .mk-logo { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: .9rem; margin-bottom: 1.4rem; }
+    .mk-side .mk-logo span { width: 22px; height: 22px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+    .mk-nav-item { display: flex; align-items: center; gap: .6rem; padding: .5rem .65rem; border-radius: 8px; font-size: .82rem; color: var(--muted); margin-bottom: .25rem; }
+    .mk-nav-item.active { background: rgba(59,130,246,.14); color: #93c5fd; }
+    .mk-nav-item i { width: 14px; height: 14px; border-radius: 4px; background: currentColor; opacity: .5; display: inline-block; }
+    .mk-main { padding: 1.4rem; }
+    .mk-score { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.4rem; }
+    .mk-ring {
+      width: 92px; height: 92px; border-radius: 50%;
+      background: conic-gradient(var(--accent) 0% 94%, rgba(255,255,255,.08) 94% 100%);
+      display: grid; place-items: center; position: relative;
+    }
+    .mk-ring::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--surface); }
+    .mk-ring b { position: relative; font-size: 1.5rem; font-weight: 800; }
+    .mk-score-info h4 { font-size: 1.05rem; margin-bottom: .25rem; }
+    .mk-score-info p { font-size: .82rem; color: var(--muted); }
+    .mk-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; }
+    .mk-card { background: #0e1521; border: 1px solid rgba(255,255,255,.05); border-radius: 10px; padding: .8rem; }
+    .mk-card .lbl { font-size: .68rem; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; }
+    .mk-card .val { font-size: 1.2rem; font-weight: 700; margin-top: .3rem; }
+    .mk-bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.07); margin-top: .55rem; overflow: hidden; }
+    .mk-bar span { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+    /* ---------- LOGOS / TRUST ---------- */
+    .trust { padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.04); }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; }
+    .trust-grid .t-num { font-size: 1.9rem; font-weight: 800; letter-spacing: -.02em; }
+    .trust-grid .t-lbl { font-size: .82rem; color: var(--muted); }
+
+    /* ---------- SECTIONS ---------- */
+    section.block { padding: 5rem 0; }
+    .sec-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+    .sec-tag { color: #93c5fd; font-size: .82rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .8rem; }
+    .sec-head h2 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; margin-bottom: 1rem; }
+    .sec-head p { color: var(--muted); font-size: 1.05rem; }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .feature {
+      background: linear-gradient(180deg, var(--surface), var(--bg2));
+      border: 1px solid var(--border); border-radius: var(--radius); padding: 1.7rem;
+      transition: transform .2s, border-color .2s;
+    }
+    .feature:hover { transform: translateY(-4px); border-color: rgba(59,130,246,.4); }
+    .f-icon { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 1.1rem; background: rgba(59,130,246,.12); color: #93c5fd; }
+    .f-icon svg { width: 23px; height: 23px; }
+    .feature h3 { font-size: 1.12rem; margin-bottom: .55rem; font-weight: 700; }
+    .feature p { color: var(--muted); font-size: .92rem; }
+
+    /* ---------- STEPS ---------- */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; counter-reset: step; }
+    .step { position: relative; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    .step .num { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: grid; place-items: center; font-weight: 800; margin-bottom: 1rem; }
+    .step h4 { font-size: 1.02rem; margin-bottom: .45rem; }
+    .step p { color: var(--muted); font-size: .88rem; }
+
+    /* ---------- CTA ---------- */
+    .cta-box {
+      position: relative; overflow: hidden; text-align: center;
+      background: linear-gradient(135deg, rgba(59,130,246,.16), rgba(139,92,246,.16));
+      border: 1px solid rgba(99,102,241,.3); border-radius: 26px; padding: 3.5rem 2rem;
+    }
+    .cta-box::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(59,130,246,.25), transparent 60%); pointer-events: none; }
+    .cta-box h2 { position: relative; font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 1rem; }
+    .cta-box p { position: relative; color: var(--muted); max-width: 520px; margin: 0 auto 2rem; font-size: 1.05rem; }
+    .cta-box .hero-cta { position: relative; }
+
+    /* ---------- FAQ ---------- */
+    .faq { max-width: 760px; margin: 0 auto; }
+    .faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; margin-bottom: .8rem; overflow: hidden; }
+    .faq summary { padding: 1.15rem 1.4rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: .98rem; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-size: 1.4rem; color: var(--accent); font-weight: 400; transition: transform .2s; }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq p { padding: 0 1.4rem 1.2rem; color: var(--muted); font-size: .92rem; }
+
+    /* ---------- FOOTER ---------- */
+    footer.ft { border-top: 1px solid rgba(255,255,255,.06); padding: 3rem 0 2rem; margin-top: 3rem; }
+    .ft-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
+    .ft-brand { max-width: 300px; }
+    .ft-brand p { color: var(--muted); font-size: .9rem; margin-top: .8rem; }
+    .ft-col h5 { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); margin-bottom: .9rem; }
+    .ft-col a { display: block; color: var(--muted); font-size: .9rem; margin-bottom: .6rem; transition: color .2s; }
+    .ft-col a:hover { color: var(--text); }
+    .ft-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,.05); color: var(--faint); font-size: .85rem; }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .menu-btn { display: block; }
+      .mockup-body { grid-template-columns: 1fr; }
+      .mk-side { display: none; }
+      .features, .steps, .trust-grid { grid-template-columns: 1fr 1fr; }
+      .mk-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .features, .steps, .trust-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3.5rem 0 2.5rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>PC Doktoru Süper Ajan</h1>
-      <p class="sub">Windows teşhis, bakım, güvenlik ve yerel AI — tek konsol</p>
-      <span class="badge">v3.1 · Portable · Türkçe</span>
-      <div class="cta">
-        <a class="btn primary" href="/indir">İndir (Portable)</a>
-        <a class="btn secondary" href="mailto:destek@pcdoktoru.com.tr">Destek</a>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v1a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M9 6 6.5 8.5M15 6l2.5 2.5"/><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M12 13v3M10.5 14.5h3"/></svg>
+        </span>
+        PC Doktoru
+      </a>
+      <nav class="nav-links">
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#nasil">Nasıl çalışır</a>
+        <a href="#sss">SSS</a>
+        <a href="mailto:destek@pcdoktoru.com.tr">Destek</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary" href="/indir">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+          İndir
+        </a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section>
-      <h2>Öne çıkanlar</h2>
-      <ul>
-        <li>Süper Ajan puanlama ve proaktif öneriler</li>
-        <li>Otonom mod, dosya zekası, işletme/filo raporu</li>
-        <li>Rollback, güvenli tamir, winget yazılım merkezi</li>
-        <li>Yerel AI (Ollama) + offline teşhis</li>
-      </ul>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="wrap hero-content">
+      <span class="pill"><span class="dot"></span> v3.1 · Süper Ajan · Türkçe arayüz</span>
+      <h1>Bilgisayarınızın<br /><span class="grad-text">yapay zeka destekli</span> doktoru</h1>
+      <p class="lead">Windows teşhis, bakım, güvenlik ve performans tek konsolda. Tek tıkla tam bakım, otonom mod ve yerel yapay zeka — kurulum yok, tamamen portable.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="/indir">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+          Ücretsiz indir
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#ozellikler">
+          Özellikleri keşfet
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="hero-note">Windows 10/11 · ~400 MB · 14 gün ücretsiz deneme</p>
+    </div>
 
-    <section>
-      <h2>Sistem gereksinimleri</h2>
-      <ul>
-        <li>Windows 10/11 (64-bit)</li>
-        <li>8 GB RAM önerilir · ~400 MB disk (uygulama)</li>
-        <li>Yönetici modu önerilir (tamir ve geri yükleme noktası)</li>
-        <li>İsteğe bağlı: Ollama (yerel AI), winget (program kurulumu)</li>
-      </ul>
-    </section>
+    <!-- MOCKUP -->
+    <div class="wrap mockup-wrap">
+      <div class="mockup">
+        <div class="mockup-bar">
+          <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+          <span class="url">pcdoktoru · Kontrol Paneli</span>
+        </div>
+        <div class="mockup-body">
+          <aside class="mk-side">
+            <div class="mk-logo"><span></span> PC Doktoru</div>
+            <div class="mk-nav-item active"><i></i> Kontrol Paneli</div>
+            <div class="mk-nav-item"><i></i> AI Asistan</div>
+            <div class="mk-nav-item"><i></i> Otonom Mod</div>
+            <div class="mk-nav-item"><i></i> Teşhis Merkezi</div>
+            <div class="mk-nav-item"><i></i> Premium Araçlar</div>
+            <div class="mk-nav-item"><i></i> Güvenlik</div>
+            <div class="mk-nav-item"><i></i> Lisans</div>
+          </aside>
+          <main class="mk-main">
+            <div class="mk-score">
+              <div class="mk-ring"><b>94</b></div>
+              <div class="mk-score-info">
+                <h4>🛡️ Süper Ajan</h4>
+                <p>Program kalitesi üst seviye — v3.1 tam donanım</p>
+              </div>
+            </div>
+            <div class="mk-cards">
+              <div class="mk-card"><div class="lbl">CPU</div><div class="val">18%</div><div class="mk-bar"><span style="width:18%"></span></div></div>
+              <div class="mk-card"><div class="lbl">RAM</div><div class="val">42%</div><div class="mk-bar"><span style="width:42%"></span></div></div>
+              <div class="mk-card"><div class="lbl">Disk</div><div class="val">61%</div><div class="mk-bar"><span style="width:61%"></span></div></div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-      © Numex AI Bilişim Teknolojileri · <a href="https://pcdoktoru.com.tr">pcdoktoru.com.tr</a><br />
-      <a href="mailto:destek@pcdoktoru.com.tr">destek@pcdoktoru.com.tr</a>
-    </footer>
+  <!-- TRUST -->
+  <div class="trust">
+    <div class="wrap trust-grid">
+      <div><div class="t-num grad-text">94/100</div><div class="t-lbl">Süper Ajan kalite puanı</div></div>
+      <div><div class="t-num grad-text">18+</div><div class="t-lbl">Bakım & tamir aracı</div></div>
+      <div><div class="t-num grad-text">100%</div><div class="t-lbl">Offline çalışabilir</div></div>
+      <div><div class="t-num grad-text">0 ₺</div><div class="t-lbl">Kurulum / reklam yok</div></div>
+    </div>
   </div>
+
+  <!-- FEATURES -->
+  <section class="block" id="ozellikler">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Özellikler</div>
+        <h2>Tek uygulama, tüm bakım ihtiyaçları</h2>
+        <p>Teşhisten tamire, güvenlikten yapay zekaya kadar bilgisayarınızı yönetmek için ihtiyacınız olan her şey.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Süper Ajan puanlama</h3>
+          <p>6 direkli program kalitesi skoru ve proaktif öneriler. Sisteminizin durumunu tek bakışta görün.</p>
+        </div>
+        <div class="feature">
+          <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg></div>
+          <h3>Yapay zeka asistanı</h3>
+          <p>Doğal dille teşhis, tamir ve dosya arama. Yerel Ollama veya offline kural tabanlı mod ile çalışır.</p>
+        </div>
+        <div class="feature">
+          <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Otonom mod</h3>
+          <p>Tespit → eylem planı → onay → uygula. Sorunları otomatik bulur, izninizle çözer.</p>
+        </div>
+        <div class="feature">
+          <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.3 2.6L3 8"/><path d="M3 3v5h5"/></svg></div>
+          <h3>Rollback & güvenli tamir</h3>
+          <p>Riskli işlemlerden önce geri yükleme noktası. Her adım kaydedilir, gerektiğinde geri alınır.</p>
+        </div>
+        <div class="feature">
+          <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z"/></svg></div>
+          <h3>Güvenlik & denetim</h3>
+          <p>Komut beyaz listesi, audit log, Windows olay günlükleri ve VPN yardımcısı tek panelde.</p>
+        </div>
+        <div class="feature">
+          <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></div>
+          <h3>Yazılım Merkezi</h3>
+          <p>Winget ile internetten program ara ve kur. Eksik sürücü ve bileşenleri tek tıkla tamamla.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="block" id="nasil" style="background:linear-gradient(180deg,transparent,rgba(59,130,246,.04),transparent)">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Nasıl çalışır</div>
+        <h2>4 adımda kullanmaya başlayın</h2>
+        <p>Kurulum sihirbazı yok, kayıt zorunluluğu yok. İndir, çalıştır, kullan.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h4>İndir</h4><p>Portable ZIP'i indirin ve istediğiniz klasöre çıkarın.</p></div>
+        <div class="step"><div class="num">2</div><h4>Çalıştır</h4><p>PC Doktoru.exe'ye sağ tık → Yönetici olarak çalıştır.</p></div>
+        <div class="step"><div class="num">3</div><h4>Etkinleştir</h4><p>Lisans anahtarını girin veya 14 günlük denemeyi başlatın.</p></div>
+        <div class="step"><div class="num">4</div><h4>Yönet</h4><p>Tek tıkla tam bakım, teşhis ve proaktif önerilerin keyfini çıkarın.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="block">
+    <div class="wrap">
+      <div class="cta-box">
+        <h2>Bilgisayarınızı bugün iyileştirin</h2>
+        <p>PC Doktoru Süper Ajan'ı ücretsiz deneyin. Kurulum gerektirmez, kişisel verileriniz cihazınızda kalır.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="/indir">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+            Hemen indir
+          </a>
+          <a class="btn btn-ghost btn-lg" href="mailto:destek@pcdoktoru.com.tr">Kurumsal lisans</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="sss">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">SSS</div>
+        <h2>Sıkça sorulan sorular</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>PC Doktoru ücretsiz mi?</summary>
+          <p>14 günlük tam özellikli deneme sunulur. Sonrasında lisans anahtarı ile devam edebilirsiniz. Bireysel ve kurumsal lisans seçenekleri için destek@pcdoktoru.com.tr ile iletişime geçin.</p>
+        </details>
+        <details>
+          <summary>Kurulum gerekiyor mu?</summary>
+          <p>Hayır. Portable sürümdür — ZIP'i çıkarıp PC Doktoru.exe'yi çalıştırmanız yeterli. İsteğe bağlı yerel AI için Ollama kurulabilir.</p>
+        </details>
+        <details>
+          <summary>Verilerim güvende mi?</summary>
+          <p>Tüm tarama ve bakım işlemleri bilgisayarınızda yerel olarak çalışır. Kişisel dosyalarınız buluta gönderilmez; yapay zeka offline modda da çalışabilir.</p>
+        </details>
+        <details>
+          <summary>Hangi Windows sürümleri destekleniyor?</summary>
+          <p>Windows 10 ve Windows 11 (64-bit). Tam tamir ve sistem geri yükleme özellikleri için yönetici olarak çalıştırmanız önerilir.</p>
+        </details>
+        <details>
+          <summary>İnternet olmadan çalışır mı?</summary>
+          <p>Evet. Teşhis, playbook ve offline mod internet olmadan çalışır. Winget yazılım kurulumu ve bulut AI için internet gerekir.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ft">
+    <div class="wrap">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <a class="logo" href="/">
+            <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v1a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M9 6 6.5 8.5M15 6l2.5 2.5"/><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M12 13v3M10.5 14.5h3"/></svg></span>
+            PC Doktoru
+          </a>
+          <p>Yapay zeka destekli Windows bakım, teşhis ve güvenlik konsolu. Numex AI Bilişim Teknolojileri tarafından geliştirilmektedir.</p>
+        </div>
+        <div class="ft-col">
+          <h5>Ürün</h5>
+          <a href="#ozellikler">Özellikler</a>
+          <a href="#nasil">Nasıl çalışır</a>
+          <a href="/indir">İndir</a>
+        </div>
+        <div class="ft-col">
+          <h5>Destek</h5>
+          <a href="#sss">SSS</a>
+          <a href="mailto:destek@pcdoktoru.com.tr">destek@pcdoktoru.com.tr</a>
+          <a href="mailto:destek@pcdoktoru.com.tr?subject=Kurumsal%20Lisans">Kurumsal lisans</a>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>© <span id="yil"></span> Numex AI Bilişim Teknolojileri · Tüm hakları saklıdır.</span>
+        <span>pcdoktoru.com.tr</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("yil").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
