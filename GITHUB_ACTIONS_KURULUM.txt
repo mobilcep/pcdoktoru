@@ -1,0 +1,16 @@
+Git push ile otomatik Vercel deploy (GitHub App izni gerekmez)
+
+1) Vercel token:
+   https://vercel.com/account/tokens → Create Token → kopyala
+
+2) GitHub repo Secrets (mobilcep/pcdoktoru):
+   Settings → Secrets and variables → Actions → New repository secret
+
+   VERCEL_TOKEN        = (1. adımdaki token)
+   VERCEL_ORG_ID       = team_nojKlX08twDyX4qesE3qWjT9
+   VERCEL_PROJECT_ID   = prj_kgroJcBeIJ01wJEok0AggmoFuBR6
+
+3) main branch'e push → Actions sekmesinde deploy çalışır
+
+Manuel deploy (her zaman çalışır):
+   tools\site\vercel_deploy.bat
