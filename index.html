@@ -19,8 +19,6 @@
       --bg2: #0a0e16;
       --surface: #111722;
       --surface2: #161d2b;
-      --border: #1f2ا330;
-      --border: #1e2troup636;
       --border: #1d2636;
       --text: #eef3fb;
       --muted: #93a1b8;
@@ -201,6 +199,105 @@
     .faq details[open] summary::after { transform: rotate(45deg); }
     .faq p { padding: 0 1.4rem 1.2rem; color: var(--muted); font-size: .92rem; }
 
+    /* ---------- HAKKINDA / NUMEX ---------- */
+    .about-panel {
+      max-width: 960px; margin: 0 auto;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden;
+    }
+    .about-top {
+      display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
+      padding: 1.75rem 2rem;
+      background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(139,92,246,.05));
+      border-bottom: 1px solid var(--border);
+    }
+    .numex-logo { display: flex; align-items: center; gap: .85rem; flex-shrink: 0; }
+    .numex-logo-mark {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      display: grid; place-items: center;
+    }
+    .numex-logo-mark svg { width: 24px; height: 24px; }
+    .numex-wordmark { font-size: 1.15rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+    .numex-wordmark span {
+      background: linear-gradient(135deg, #93c5fd, #c4b5fd);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .numex-sub { font-size: .78rem; color: var(--muted); }
+    .about-top-text { flex: 1; min-width: 200px; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+    .about-top-links { display: flex; gap: .5rem; flex-shrink: 0; }
+    .about-top-links a {
+      font-size: .82rem; color: #93c5fd; padding: .4rem .8rem;
+      border: 1px solid rgba(59,130,246,.25); border-radius: 8px; white-space: nowrap;
+      transition: background .2s;
+    }
+    .about-top-links a:hover { background: rgba(59,130,246,.1); }
+    .about-block { padding: 1.75rem 2rem; }
+    .about-block + .about-block { border-top: 1px solid var(--border); padding-top: 1.75rem; }
+    .about-label {
+      font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--faint); margin-bottom: 1.1rem;
+    }
+    .proj-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: .85rem;
+    }
+    .proj-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.1rem; display: flex; flex-direction: column; min-height: 118px;
+    }
+    .proj-card h4 { font-size: .92rem; font-weight: 700; margin-bottom: .35rem; }
+    .proj-card p { font-size: .78rem; color: var(--muted); line-height: 1.45; flex: 1; }
+    .proj-dot { width: 8px; height: 8px; border-radius: 50%; margin-bottom: .7rem; }
+    .proj-ai .proj-dot { background: #3b82f6; }
+    .proj-agent .proj-dot { background: #10b981; }
+    .proj-okul .proj-dot { background: #f59e0b; }
+    .proj-codex .proj-dot { background: #8b5cf6; }
+    .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+    .app-item {
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+      padding: 1rem 1.15rem; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; transition: border-color .2s; text-decoration: none; color: inherit;
+    }
+    .app-item:hover { border-color: rgba(59,130,246,.35); }
+    .app-item.active-app { border-color: rgba(59,130,246,.4); background: rgba(59,130,246,.06); }
+    .app-item .app-name { font-weight: 600; font-size: .9rem; }
+    .app-item .app-desc { font-size: .76rem; color: var(--muted); margin-top: .1rem; }
+    .app-badge {
+      font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+      padding: .25rem .55rem; border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+      background: rgba(16,185,129,.12); color: #6ee7b7;
+    }
+
+    /* ---------- FİYAT ---------- */
+    .price-slogan {
+      display: inline-flex; align-items: center; gap: .45rem; margin-top: .5rem;
+      padding: .45rem 1rem; border-radius: 999px; font-size: .88rem; font-weight: 500;
+      background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.25); color: #fcd34d;
+    }
+    .price-note { text-align: center; color: var(--muted); font-size: .86rem; margin-top: .65rem; }
+    .price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1100px; margin: 0 auto; }
+    .price-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.6rem; display: flex; flex-direction: column; position: relative;
+    }
+    .price-card.featured {
+      border-color: rgba(59,130,246,.45);
+      background: linear-gradient(180deg, rgba(59,130,246,.08), var(--surface));
+      box-shadow: 0 12px 40px rgba(59,130,246,.12);
+    }
+    .price-card .p-tag {
+      font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: #93c5fd; margin-bottom: .6rem;
+    }
+    .price-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+    .price-card .amount { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; margin: .5rem 0; }
+    .price-card .amount span { font-size: .95rem; font-weight: 500; color: var(--muted); }
+    .price-card .p-desc { color: var(--muted); font-size: .86rem; line-height: 1.5; flex: 1; margin-bottom: 1.2rem; }
+    .price-card ul { list-style: none; padding: 0; margin: 0 0 1.25rem; font-size: .84rem; color: var(--muted); }
+    .price-card li { padding: .3rem 0; padding-left: 1.1rem; position: relative; }
+    .price-card li::before { content: "✓"; position: absolute; left: 0; color: var(--ok); font-size: .75rem; }
+    .price-card .btn { width: 100%; justify-content: center; text-decoration: none; }
+
     /* ---------- FOOTER ---------- */
     footer.ft { border-top: 1px solid rgba(255,255,255,.06); padding: 3rem 0 2rem; margin-top: 3rem; }
     .ft-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
@@ -218,9 +315,15 @@
       .mk-side { display: none; }
       .features, .steps, .trust-grid { grid-template-columns: 1fr 1fr; }
       .mk-cards { grid-template-columns: 1fr; }
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .app-grid { grid-template-columns: 1fr; }
+      .about-top { flex-direction: column; align-items: flex-start; }
+      .price-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
-      .features, .steps, .trust-grid { grid-template-columns: 1fr; }
+      .price-grid { grid-template-columns: 1fr; }
+      .features, .steps, .trust-grid, .proj-grid { grid-template-columns: 1fr; }
+      .about-block, .about-top { padding-left: 1.25rem; padding-right: 1.25rem; }
       .hero { padding: 3.5rem 0 2.5rem; }
     }
   </style>
@@ -237,7 +340,8 @@
       </a>
       <nav class="nav-links">
         <a href="#ozellikler">Özellikler</a>
-        <a href="#nasil">Nasıl çalışır</a>
+        <a href="#fiyatlandirma">Fiyat</a>
+        <a href="#hakkinda">Hakkında</a>
         <a href="#sss">SSS</a>
         <a href="mailto:destek@pcdoktoru.com.tr">Destek</a>
       </nav>
@@ -378,6 +482,80 @@
     </div>
   </section>
 
+  <!-- FİYATLANDIRMA -->
+  <section class="block" id="fiyatlandirma">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Fiyatlandırma</div>
+        <h2>Planınızı seçin</h2>
+        <p>14 gün ücretsiz deneme — kredi kartı gerekmez. Yıllık lisans; ödeme İyzico ile güvenli alınır.</p>
+        <div class="price-slogan">☕ Bir kahve fiyatına PC bakımı</div>
+        <p class="price-note">Bireysel planda ayda yalnızca ~₺29 · yıllık yenileme ile sürekli güncelleme</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="p-tag">Deneme</div>
+          <h3>Ücretsiz</h3>
+          <div class="amount">₺0</div>
+          <p class="p-desc">14 gün, tam özellik. Makine başına bir kez — kart gerekmez.</p>
+          <ul>
+            <li>Süper Ajan ve otonom mod</li>
+            <li>Tek tıkla tam bakım</li>
+            <li>Yerel AI teşhis sohbeti</li>
+            <li>Portable — kurulum yok</li>
+            <li>Sonra plan seçerek devam</li>
+          </ul>
+          <a class="btn btn-ghost" href="/indir">İndir ve dene</a>
+        </div>
+        <div class="price-card featured">
+          <div class="p-tag">Popüler</div>
+          <h3>Bireysel</h3>
+          <div class="amount">₺349 <span>/ yıl</span></div>
+          <p class="p-desc">Ev PC + laptop. Ayda ~₺29 — günlük kahve parasına profesyonel bakım.</p>
+          <ul>
+            <li>2 cihaz hakkı (ev + laptop)</li>
+            <li>Süper Ajan puanlama ve öneriler</li>
+            <li>Otonom mod — tespit ve otomatik çözüm</li>
+            <li>Dosya zekası, VPN, güvenlik araçları</li>
+            <li>Winget yazılım merkezi</li>
+            <li>1 yıl güncelleme ve e-posta desteği</li>
+          </ul>
+          <a class="btn btn-primary" href="/satin-al?plan=bireysel">Satın al</a>
+        </div>
+        <div class="price-card">
+          <div class="p-tag">En iyi değer</div>
+          <h3>Aile</h3>
+          <div class="amount">₺549 <span>/ yıl</span></div>
+          <p class="p-desc">Evdeki tüm bilgisayarlar tek anahtarla. Cihaz başına ayda ~₺9.</p>
+          <ul>
+            <li>5 cihaz — tek anahtar, paylaşımlı</li>
+            <li>Bireysel plandaki tüm özellikler</li>
+            <li>Eş, çocuk ve ev bilgisayarları</li>
+            <li>Küçük ofis — 5 kişiye kadar ekip</li>
+            <li>Öncelikli e-posta desteği</li>
+            <li>Toplu bakım — her PC ayrı yönetilir</li>
+          </ul>
+          <a class="btn btn-ghost" href="/satin-al?plan=aile">Satın al</a>
+        </div>
+        <div class="price-card">
+          <div class="p-tag">Kurumsal</div>
+          <h3>İşletme</h3>
+          <div class="amount">Teklif <span>/ yıl</span></div>
+          <p class="p-desc">10+ PC, filo yönetimi ve kurumsal destek. Fiyat PC sayısına göre.</p>
+          <ul>
+            <li>10 — 500+ PC lisans paketi</li>
+            <li>İşletme / filo sağlık paneli</li>
+            <li>Toplu rapor ve çoklu makine takibi</li>
+            <li>Kurumsal fatura ve sözleşme</li>
+            <li>Öncelikli destek ve SLA seçenekleri</li>
+            <li>Özel aktivasyon ve anahtar yönetimi</li>
+          </ul>
+          <a class="btn btn-ghost" href="mailto:destek@pcdoktoru.com.tr?subject=Kurumsal%20Lisans%20Teklifi">Teklif al</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="block">
     <div class="wrap">
@@ -395,6 +573,79 @@
     </div>
   </section>
 
+  <!-- HAKKINDA -->
+  <section class="block" id="hakkinda">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Hakkında</div>
+        <h2>Numex AI ekosistemi</h2>
+        <p>PC Doktoru, Numex AI Bilişim Teknolojileri tarafından geliştirilen yapay zeka ve yazılım projelerinin bir parçasıdır.</p>
+      </div>
+      <div class="about-panel">
+        <div class="about-top">
+          <div class="numex-logo">
+            <div class="numex-logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none"><path d="M8 8v16M8 8l10 16M18 8v16" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="numex-wordmark"><span>Numex AI</span></div>
+              <div class="numex-sub">Bilişim Teknolojileri</div>
+            </div>
+          </div>
+          <p class="about-top-text">Türkiye odaklı yapay zeka, otonom ajanlar ve geliştirici araçları. Gizlilik odaklı, Türkçe deneyim.</p>
+          <div class="about-top-links">
+            <a href="https://numexai.com.tr" target="_blank" rel="noopener noreferrer">numexai.com.tr</a>
+            <a href="mailto:destek@pcdoktoru.com.tr">Destek</a>
+          </div>
+        </div>
+        <div class="about-block">
+          <div class="about-label">Projeler</div>
+          <div class="proj-grid">
+            <div class="proj-card proj-ai">
+              <div class="proj-dot" aria-hidden="true"></div>
+              <h4>Numex AI</h4>
+              <p>Sohbet, görsel, ses ve bilgi tabanı platformu.</p>
+            </div>
+            <div class="proj-card proj-agent">
+              <div class="proj-dot" aria-hidden="true"></div>
+              <h4>Numex Agent</h4>
+              <p>Otonom ajanlar — tespit, plan ve otomatik çözüm.</p>
+            </div>
+            <div class="proj-card proj-okul">
+              <div class="proj-dot" aria-hidden="true"></div>
+              <h4>Numex Okul</h4>
+              <p>AI destekli eğitim ve içerik üretimi.</p>
+            </div>
+            <div class="proj-card proj-codex">
+              <div class="proj-dot" aria-hidden="true"></div>
+              <h4>Numex Codex</h4>
+              <p>Kod üretimi ve geliştirici asistan araçları.</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-block">
+          <div class="about-label">Aktif uygulamalar</div>
+          <div class="app-grid">
+            <a class="app-item active-app" href="/indir">
+              <div>
+                <div class="app-name">PC Doktoru Süper Ajan</div>
+                <div class="app-desc">Windows bakım ve teşhis · v3.1</div>
+              </div>
+              <span class="app-badge">Aktif</span>
+            </a>
+            <a class="app-item" href="https://numexai.com.tr" target="_blank" rel="noopener noreferrer">
+              <div>
+                <div class="app-name">Numex AI Platform</div>
+                <div class="app-desc">Sohbet, Codex, görsel ve ses</div>
+              </div>
+              <span class="app-badge">Aktif</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="block" id="sss">
     <div class="wrap">
@@ -405,11 +656,15 @@
       <div class="faq">
         <details open>
           <summary>PC Doktoru ücretsiz mi?</summary>
-          <p>14 günlük tam özellikli deneme sunulur. Sonrasında lisans anahtarı ile devam edebilirsiniz. Bireysel ve kurumsal lisans seçenekleri için destek@pcdoktoru.com.tr ile iletişime geçin.</p>
+          <p>14 günlük tam özellikli deneme sunulur (kart gerekmez). Sonrasında Bireysel (₺349/yıl) veya Aile (₺549/yıl) planından satın alabilirsiniz. Kurumsal teklif: destek@pcdoktoru.com.tr</p>
         </details>
         <details>
           <summary>Kurulum gerekiyor mu?</summary>
           <p>Hayır. Portable sürümdür — ZIP'i çıkarıp PC Doktoru.exe'yi çalıştırmanız yeterli. İsteğe bağlı yerel AI için Ollama kurulabilir.</p>
+        </details>
+        <details>
+          <summary>Neden portable?</summary>
+          <p>Kurulum sihirbazı yok — indirip çalıştırırsınız, istemediğinizde klasörü silmeniz yeterli. Sisteme kalıcı yazılım eklemez; bakım ve teşhis yine tam kapasite çalışır. Lisansınız bilgisayarınıza özel olarak saklanır, USB'ye kopyalasanız bile yeniden etkinleştirme gerekir. Güncelleme için yeni ZIP indirmeniz yeterli.</p>
         </details>
         <details>
           <summary>Verilerim güvende mi?</summary>
@@ -443,6 +698,14 @@
           <a href="#ozellikler">Özellikler</a>
           <a href="#nasil">Nasıl çalışır</a>
           <a href="/indir">İndir</a>
+          <a href="#fiyatlandirma">Fiyatlandırma</a>
+          <a href="#hakkinda">Hakkında</a>
+        </div>
+        <div class="ft-col">
+          <h5>Numex AI</h5>
+          <a href="#hakkinda">Projeler</a>
+          <a href="https://numexai.com.tr" target="_blank" rel="noopener noreferrer">numexai.com.tr</a>
+          <a href="mailto:destek@pcdoktoru.com.tr">destek@pcdoktoru.com.tr</a>
         </div>
         <div class="ft-col">
           <h5>Destek</h5>

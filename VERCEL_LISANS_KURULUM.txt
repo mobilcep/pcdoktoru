@@ -1,0 +1,41 @@
+PC Doktoru — Lisans API (Vercel + Blob) ✅ Kuruldu
+====================================================
+
+Render yerine lisans API doğrudan pcdoktoru.com.tr üzerinde çalışır.
+
+## Tamamlanan (otomatik)
+
+- Vercel Blob store: pcd-lisans-data (private)
+- BLOB_READ_WRITE_TOKEN → production + preview
+- LISANS_GIZLI, ODEME_GIZLI, LISANS_ADMIN_GIZLI → production
+- SSO deployment protection → kapatıldı (API herkese açık)
+- API uçları: /api/lisans/*
+
+## Test
+
+  https://pcdoktoru.com.tr/api/lisans/saglik
+  → {"ok":true,"servis":"pc-doktoru-lisans",...}
+
+## Beta anahtarları yükle
+
+  set LISANS_ADMIN_GIZLI=(tools\site\.lisans-secrets.local dosyasındaki değer)
+  node tools\site\scripts\seed-anahtarlar.mjs
+
+## İyzico (henüz sizin panelden)
+
+Vercel env'e ekleyin:
+  IYZIPAY_API_KEY
+  IYZIPAY_SECRET_KEY
+  IYZIPAY_URI=https://api.iyzipay.com  (sandbox için sandbox-api.iyzipay.com)
+  SITE_URL=https://pcdoktoru.com.tr
+
+## Uygulama
+
+config.json:
+  "lisans_sunucu": "https://pcdoktoru.com.tr/api/lisans"
+
+Sonra paketle.bat
+
+## Render (isteğe bağlı yedek)
+
+tools/lisans_deploy/ — ayrı sunucu isterseniz kullanılır.

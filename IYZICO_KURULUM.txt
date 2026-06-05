@@ -1,0 +1,60 @@
+PC Doktoru — İyzico + Lisans Kurulumu
+=====================================
+
+## Mimari
+
+  pcdoktoru.com.tr (Vercel)
+    /satin-al          → ödeme formu
+    /api/odeme/baslat  → İyzico CF initialize
+    /api/odeme/callback → ödeme doğrula + lisans API çağır
+    /api/odeme/sonuc   → başarı sayfası anahtar gösterir
+
+  Lisans sunucusu (Render / VPS — kalıcı disk gerekli)
+    tools/lisans_sunucu.py :8790
+    /api/lisans/odeme/kayit
+    /api/lisans/aktivasyon  (uygulama)
+
+## 1. Vercel ortam değişkenleri
+
+Vercel → pcdoktoru → Settings → Environment Variables:
+
+  IYZIPAY_API_KEY       = (İyzico panel API anahtarı)
+  IYZIPAY_SECRET_KEY    = (İyzico panel gizli anahtar)
+  IYZIPAY_URI           = https://api.iyzipay.com
+                          (sandbox: https://sandbox-api.iyzipay.com)
+  SITE_URL              = https://pcdoktoru.com.tr
+  LISANS_API_URL        = https://LISANS-SUNUCU/api/lisans
+  ODEME_GIZLI           = uzun-rastgele-gizli-dize (lisans sunucusu ile AYNI)
+
+## 2. Lisans sunucusu
+
+  set LISANS_GIZLI=...
+  set ODEME_GIZLI=...   (Vercel ile aynı)
+  set LISANS_DB=C:\veri\lisans_veritabani.json
+  python tools/lisans_sunucu.py
+
+Production: Render Web Service, persistent disk ile LISANS_DB.
+
+Uygulama config:
+  "lisans_sunucu": "https://LISANS-SUNUCU/api/lisans"
+
+## 3. İyzico panel
+
+  Callback URL (otomatik): https://pcdoktoru.com.tr/api/odeme/callback
+  Ürün: sanal / yazılım lisansı
+  Para birimi: TRY
+
+## 4. Test akışı
+
+  1. Sandbox anahtarları Vercel'e ekle
+  2. Lisans sunucusunu çalıştır (ngrok ile dışarı aç veya Render deploy)
+  3. https://pcdoktoru.com.tr/satin-al?plan=bireysel
+  4. Test kartı ile öde → odeme-basarili → PCD-... anahtarı
+  5. Uygulamada etkinleştir
+
+## 5. Fiyatlar (lib/products.js)
+
+  bireysel: ₺349 / yıl, 2 cihaz
+  aile:     ₺549 / yıl, 5 cihaz
+
+Fiyat değişikliği: tools/site/lib/products.js + index.html fiyat bölümü.
