@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İndir — PC Doktoru</title>
+  <style>
+    :root { --bg:#090c12; --surface:#121820; --accent:#3b82f6; --text:#e8eef8; --muted:#7a8ba8; --ok:#22c55e; }
+    body { margin:0; font-family: "Segoe UI", system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem; }
+    h1 { font-size: 1.75rem; }
+    .card { background:var(--surface); border:1px solid #1e2836; border-radius:16px; padding:1.5rem; margin:1.5rem 0; }
+    a.btn { display:inline-block; background:var(--accent); color:#fff; padding:.9rem 1.6rem; border-radius:12px; text-decoration:none; font-weight:600; margin-top:1rem; }
+    .steps { color:var(--muted); font-size:.95rem; }
+    .steps li { margin:.5rem 0; }
+    code { background:#1a2230; padding:.15rem .4rem; border-radius:4px; font-size:.85rem; }
+    .note { font-size:.85rem; color:var(--muted); border-left:3px solid var(--accent); padding-left:1rem; margin-top:1rem; }
+    a.back { color:var(--accent); text-decoration:none; font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/">← Ana sayfa</a>
+    <h1>PC Doktoru İndir</h1>
+    <p style="color:var(--muted)">Portable sürüm — kurulum gerektirmez, ZIP açıp çalıştırın.</p>
+
+    <div class="card">
+      <strong>PC Doktoru v3.1 Portable</strong>
+      <p style="color:var(--muted);font-size:.9rem">Windows 10/11 · ~400 MB</p>
+      <!-- ZIP GitHub Releases'ta — linki site-config.js içinde güncelleyin -->
+      <a class="btn" id="indir-btn" href="#">ZIP İndir</a>
+      <script src="/site-config.js"></script>
+      <script>
+        document.getElementById("indir-btn").href = window.PCD_DOWNLOAD_URL || "#";
+      </script>
+      <p class="note">
+        Beta lisans anahtarınız e-posta ile gelir. İlk açılışta <code>PCD-XXXX-XXXX-XXXX-XXXX</code> girin
+        veya 14 günlük denemeyi başlatın.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 style="font-size:1.1rem;margin-top:0">Kurulum adımları</h2>
+      <ol class="steps">
+        <li>ZIP dosyasını indirin ve bir klasöre çıkarın (ör. <code>C:\PC Doktoru</code>).</li>
+        <li><strong>PC Doktoru.exe</strong> dosyasına sağ tık → <strong>Yönetici olarak çalıştır</strong>.</li>
+        <li>Lisans anahtarını girin veya deneme sürümünü başlatın.</li>
+        <li>İsteğe bağlı: Eksikler & Kurulum sayfasından Ollama / winget tamamlayın.</li>
+      </ol>
+    </div>
+
+    <p style="color:var(--muted);font-size:.85rem">
+      Kurumsal lisans: <a href="mailto:destek@pcdoktoru.com.tr" style="color:var(--accent)">destek@pcdoktoru.com.tr</a>
+    </p>
+  </div>
+</body>
+</html>

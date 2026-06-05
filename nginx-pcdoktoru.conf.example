@@ -1,0 +1,53 @@
+# pcdoktoru.com.tr — örnek Nginx yapılandırması
+# /etc/nginx/sites-available/pcdoktoru.com.tr
+
+server {
+    listen 80;
+    server_name pcdoktoru.com.tr www.pcdoktoru.com.tr;
+    return 301 https://pcdoktoru.com.tr$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name pcdoktoru.com.tr;
+
+    # Let's Encrypt (certbot ile üretin)
+    ssl_certificate     /etc/letsencrypt/live/pcdoktoru.com.tr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/pcdoktoru.com.tr/privkey.pem;
+
+    root /var/www/pcdoktoru;
+    index index.html;
+
+    # Statik site
+    location = /indir {
+        try_files /indir.html =404;
+    }
+
+    # Portable ZIP ve diğer dosyalar
+    location /dosyalar/ {
+        alias /var/www/pcdoktoru/dosyalar/;
+        add_header Content-Disposition "attachment";
+    }
+
+    # Lisans API (arka planda Python)
+    location /api/lisans/ {
+        proxy_pass http://127.0.0.1:8790/api/lisans/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+
+# www → apex yönlendirme (isteğe bağlı ayrı server bloğu)
+server {
+    listen 443 ssl http2;
+    server_name www.pcdoktoru.com.tr;
+    ssl_certificate     /etc/letsencrypt/live/pcdoktoru.com.tr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/pcdoktoru.com.tr/privkey.pem;
+    return 301 https://pcdoktoru.com.tr$request_uri;
+}

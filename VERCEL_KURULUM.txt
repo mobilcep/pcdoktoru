@@ -1,0 +1,48 @@
+PC Doktoru — Vercel bağlama (pcdoktoru.com.tr)
+==============================================
+
+Hesap: numexai-1029 (Hobby) — mevcut "numexyani" projesine DOKUNMAYIN.
+Yeni proje açın: pcdoktoru
+
+─── ADIM 1: GitHub repo (önerilen) ───
+1. GitHub'da yeni repo: mobilcep/pcdoktoru (public)
+2. Sadece tools/site klasörünü push edin VEYA tüm doktorpc repo'sunu push edip
+   Vercel'de Root Directory = tools/site seçin.
+
+─── ADIM 2: Vercel yeni proje ───
+1. Vercel → Add New… → Project
+2. Import Git Repository → mobilcep/pcdoktoru (veya doktorpc)
+3. Project Name: pcdoktoru
+4. Framework Preset: Other
+5. Root Directory: tools/site  (monorepo ise Edit → tools/site)
+6. Build Command: (boş bırak)
+7. Output Directory: . (nokta)
+8. Deploy
+
+─── ADIM 3: Alan adı ───
+1. Proje → Settings → Domains
+2. Add → pcdoktoru.com.tr
+3. Add → www.pcdoktoru.com.tr (www → apex yönlendirme otomatik)
+
+─── ADIM 4: DNS (alan adı satıcı paneli — Nic.tr / Turhost vb.) ───
+Vercel'in gösterdiği kayıtları ekleyin (genelde):
+
+  Tip A     @    →  76.76.21.21
+  Tip CNAME www  →  cname.vercel-dns.com
+
+VEYA nameserver'ları Vercel'e devredin:
+  ns1.vercel-dns.com
+  ns2.vercel-dns.com
+
+Doğrulama 5–60 dakika sürebilir.
+
+─── ADIM 5: ZIP indirme (GitHub Releases) ───
+1. paketle.bat + python tools/site/paket_zip.py
+2. GitHub → Releases → New release → tag v3.1.0
+3. PC-Doktoru-v3.1-portable.zip dosyasını asset olarak yükle
+4. tools/site/site-config.js içindeki PCD_DOWNLOAD_URL'i kontrol edin
+5. Git push → Vercel otomatik yeniler
+
+─── Test ───
+https://pcdoktoru.com.tr
+https://pcdoktoru.com.tr/indir
