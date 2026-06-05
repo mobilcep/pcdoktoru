@@ -7,7 +7,7 @@
 
 ## Git + Vercel otomatik deploy
 
-1. GitHub'da boş repo oluşturun: `mobilcep/pcdoktoru-site`
+1. GitHub'da boş repo: `mobilcep/pcdoktoru`
 2. `git_vercel_baglanti.bat` çalıştırın
 
 Her `git push` → Vercel otomatik production deploy.

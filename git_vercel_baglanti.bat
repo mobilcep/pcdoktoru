@@ -2,14 +2,14 @@
 chcp 65001 >nul
 cd /d "%~dp0"
 set SCOPE=--scope numexai-1029s-projects
-set REPO=https://github.com/mobilcep/pcdoktoru-site.git
+set REPO=https://github.com/mobilcep/pcdoktoru.git
 
 echo.
 echo === PC Doktoru — Git + Vercel baglantisi ===
 echo.
 echo ONCE: GitHub'da bos repo acin (mobilcep hesabi):
 echo   https://github.com/new
-echo   Repository name: pcdoktoru-site
+echo   Repository name: pcdoktoru
 echo   Public, README EKLEMEYIN (bos repo)
 echo.
 pause
@@ -33,7 +33,7 @@ if errorlevel 1 (
   echo.
   echo CLI baglanti basarisiz — Vercel panelden de yapabilirsiniz:
   echo   vercel.com -^> site projesi -^> Settings -^> Git -^> Connect
-  echo   Repo: mobilcep/pcdoktoru-site, Production Branch: main
+  echo   Repo: mobilcep/pcdoktoru, Production Branch: main
   pause
   exit /b 1
 )
