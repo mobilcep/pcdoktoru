@@ -18,8 +18,9 @@ if errorlevel 1 (
 echo.
 echo [2/3] Onizleme deploy...
 set SCOPE=--scope numexai-1029s-projects
+set PROJE=pcdoktoru
 
-call npx vercel@latest link --yes %SCOPE% 2>nul
+call npx vercel@latest link --yes --project %PROJE% %SCOPE% 2>nul
 
 echo.
 echo [2/3] Production deploy...
