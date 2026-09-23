@@ -78,7 +78,9 @@ sağlar. Cihaz değiştiren kullanıcı `deaktivasyon` ile eski cihazı serbest 
 
 ## 4. Veri katmanı: Blob üzerinde JSON
 
-Lisans veritabanı, Vercel Blob'da tek bir JSON belgesidir (`lisans/lisans_veritabani.json`):
+Lisans veritabanı, Vercel Blob'da tek bir JSON belgesidir. Blob dosyası herkese açık bir URL'de
+durduğu için dosya yolu `LISANS_GIZLI`'den HMAC ile türetilir (`lisans/db-<64 hex>.json`); böylece
+adres tahmin edilemez, listeleme ise yalnızca Blob token'ı ile yapılabilir:
 
 ```json
 {
@@ -89,6 +91,9 @@ Lisans veritabanı, Vercel Blob'da tek bir JSON belgesidir (`lisans/lisans_verit
 
 **Neden?** Küçük/orta ölçekte (binlerce lisans) sıfır işletim maliyeti, ayrı veritabanı sunucusu
 yok ve yedeklemesi tek dosya indirmek kadar kolay.
+
+**Veri kaybına karşı:** Blob okunamazsa `dbYukle` boş veritabanı döndürmek yerine hata fırlatır;
+aksi halde sonraki bir yazma tüm lisansların üzerine yazabilirdi.
 
 **Sınırları:** Oku-değiştir-yaz modeli eşzamanlı yazmalarda son yazanın kazanmasına yol açabilir
 ve belge büyüdükçe her istek tüm belgeyi okur. Ölçek büyüdüğünde doğal geçiş yolu Postgres/KV gibi

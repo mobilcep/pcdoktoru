@@ -155,7 +155,7 @@ Kullanıcı ─▶│ /satin-al ─▶ /api/odeme/baslat ─▶ İyzico Checkout
             │                   /api/odeme/callback ◀┘  ödeme doğrula → lisans anahtarı üret   │
             │                           │                                                      │
             │                           ▼                                                      │
-            │                   Vercel Blob (lisans/lisans_veritabani.json)                    │
+            │                   Vercel Blob (lisans/db-<gizli-hash>.json)                      │
             │                           ▲                                                      │
 PC Doktoru ─▶ /api/lisans/aktivasyon · /dogrula · /deaktivasyon  (makine_id + HMAC imza)     │
  (EXE)      └──────────────────────────────────────────────────────────────────────────────────┘
@@ -200,7 +200,7 @@ vercel dev          # http://localhost:3000
 | Değişken | Açıklama |
 |---|---|
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob erişimi (lisans veritabanı) |
-| `LISANS_GIZLI` | Lisans kayıtlarını imzalayan HMAC anahtarı |
+| `LISANS_GIZLI` | **Zorunlu.** Lisans kayıtlarını imzalayan HMAC anahtarı; veritabanı dosya yolu da bundan türetilir (değiştirirseniz veritabanını yeni yola taşıyın) |
 | `ODEME_GIZLI` | Ödeme → lisans iç çağrılarının paylaşılan gizli anahtarı |
 | `LISANS_ADMIN_GIZLI` | `/seed` uç noktası için yönetici anahtarı |
 | `IYZIPAY_API_KEY` / `IYZIPAY_SECRET_KEY` | İyzico API anahtarları |
