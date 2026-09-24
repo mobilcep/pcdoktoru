@@ -9,5 +9,6 @@ window.PCD_SOCIAL = {
   tiktok: "",    // örn. "https://tiktok.com/@pcdoktoru"
   x: "",         // örn. "https://x.com/pcdoktoru"
   facebook: "",
-  linkedin: ""
+  linkedin: "",
+  github: "https://github.com/mobilcep/pcdoktoru"
 };
